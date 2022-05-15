@@ -36,11 +36,14 @@ class MessageDetailViewController: UIViewController {
             let sender = json["sender"] as! String
             let receiver = json["receiver"] as! String
             let content = json["content"] as! String
-            let message = Message(sender: sender, receiver: receiver, content: content)
-            self.messages.append(message)
-            self.tbvMessageDetail.reloadData()
-            let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
-            self.tbvMessageDetail.scrollToRow(at: indexPath, at: .top, animated: true)
+            if (sender == self.myEmail && receiver == self.user.email) ||
+                (sender == self.user.email && receiver == self.myEmail) {
+                let message = Message(sender: sender, receiver: receiver, content: content)
+                self.messages.append(message)
+                self.tbvMessageDetail.reloadData()
+                let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
+                self.tbvMessageDetail.scrollToRow(at: indexPath, at: .top, animated: true)
+            }
         }
     }
     
