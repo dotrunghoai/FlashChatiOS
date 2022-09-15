@@ -42,7 +42,9 @@ class MessageDetailViewController: UIViewController {
                 self.messages.append(message)
                 self.tbvMessageDetail.reloadData()
                 let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
-                self.tbvMessageDetail.scrollToRow(at: indexPath, at: .top, animated: true)
+                if indexPath.row > 0 {
+                    self.tbvMessageDetail.scrollToRow(at: indexPath, at: .top, animated: true)
+                }
             }
         }
     }
@@ -69,7 +71,9 @@ extension MessageDetailViewController: UITableViewDataSource {
             self.messages = messages
             self.tbvMessageDetail.reloadData()
             let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
-            self.tbvMessageDetail.scrollToRow(at: indexPath, at: .top, animated: true)
+            if indexPath.row > 0 {
+                self.tbvMessageDetail.scrollToRow(at: indexPath, at: .top, animated: true)
+            }
         }
     }
     
